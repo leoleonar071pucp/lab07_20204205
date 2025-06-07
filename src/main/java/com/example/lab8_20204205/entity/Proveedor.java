@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DialectOverride;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -14,7 +18,7 @@ import java.time.LocalDateTime;
 public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProductID", nullable = false)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "razonSocial", nullable = false, length = 100)
@@ -56,10 +60,13 @@ public class Proveedor {
     @Column(name = "facturacionAnualDolares", nullable = false)
     private float facturacionAnualDolares;
 
-    @Column(name = "fechaRegistro", nullable = false)
+
+    @CreationTimestamp
+    @Column(name = "fechaRegistro", nullable = true, updatable = false)
     private LocalDateTime fechaRegistro;
 
-    @Column(name = "ultimaActualizacion", nullable = false)
+    @UpdateTimestamp
+    @Column(name = "ultimaActualizacion", nullable = true)
     private LocalDateTime ultimaActualizacion;
 
     @Column(name = "estado", nullable = false)
