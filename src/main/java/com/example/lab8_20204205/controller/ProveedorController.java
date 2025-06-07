@@ -38,7 +38,7 @@ public class ProveedorController {
         return proveedor.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProveedor(@PathVariable Integer id1) {
         proveedorRepository.deleteById(id1);
         return ResponseEntity.noContent().build();
